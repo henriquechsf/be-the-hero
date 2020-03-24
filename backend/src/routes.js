@@ -14,5 +14,7 @@ routes.post('/ongs', OngController.create)
 routes.get('/incidents', IncidentsController.index)
 // rota para cadastrar um novo incidente
 routes.post('/incidents', IncidentsController.create)
+// rota para deletar incidentes
+routes.delete('/incidents/:id', IncidentsController.delete)
 
 module.exports = routes;
