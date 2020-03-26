@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { FiPower, FiTrash2, FiTrash } from 'react-icons/fi'
 
 import api from '../../services/api'
@@ -11,6 +11,8 @@ function Profile() {
 
     // estado
     const [incidents, setIncidents] = useState([])
+
+    const history = useHistory()
 
     // recuperando os dados da Ong armazenado no storage do navegador
     const ongId = localStorage.getItem('ongId')
@@ -44,6 +46,13 @@ function Profile() {
         }
     }
 
+    // logout
+    function handleLogout() {
+        localStorage.clear()
+
+        history.push('/')
+    }
+
     return (
         <div className="profile-container">
             <header>
@@ -54,7 +63,7 @@ function Profile() {
                     Cadastrar novo caso
                 </Link>
 
-                <button type="button">
+                <button onClick={handleLogout} type="button">
                     <FiPower size={18} color="#e02041" />
                 </button>
             </header>
