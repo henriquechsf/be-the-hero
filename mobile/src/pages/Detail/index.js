@@ -21,8 +21,8 @@ function Detail() {
     function sendMail() {
         MailComposer.composeAsync({
             subject: 'Herói do caso: Cadelinha atropelada',
-            recipients: ['carloshenrique4m@gmail.com', 'ch.ferreir@hotmail.com'],
-            body: message,
+            recipients: ['carloshenrique4m@gmail.com'],
+            body: message
         })
     }
 
