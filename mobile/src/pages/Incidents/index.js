@@ -17,8 +17,8 @@ function Incidents() {
 
     // navegar atraves dos links
     const navigation = useNavigation()
-    function navigateToDetail() {
-        navigation.navigate('Detail')
+    function navigateToDetail(incident) {
+        navigation.navigate('Detail', { incident })
     }
 
     // busca os dados na api
@@ -66,8 +66,8 @@ function Incidents() {
                         }).format(incident.value)}
                         </Text>
 
-                        {/** Botão */}
-                        <TouchableOpacity style={styles.detailsButton} onPress={navigateToDetail}>
+                        {/** Navega para a tela Detail passando o caso como parametro */}
+                        <TouchableOpacity style={styles.detailsButton} onPress={() => navigateToDetail(incident)}>
                             <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
                             <Feather name="arrow-right" size={16} color="#e02041" />
                         </TouchableOpacity>
