@@ -15,6 +15,10 @@ function Incidents() {
     const [incidents, setIncidents] = useState([])
     const [total, setTotal] = useState(0)
 
+    // paginação e scrool infinito
+    const [page, setPage] = useState(1)
+    const [loading, setLoading] = useState(false)
+
     // navegar atraves dos links
     const navigation = useNavigation()
     function navigateToDetail(incident) {
@@ -23,10 +27,25 @@ function Incidents() {
 
     // busca os dados na api
     async function loadIncidents() {
-        const response = await api.get('incidents')
 
-        setIncidents(response.data)
+        if (loading) {
+            return
+        }
+        if (total > 0 && incidents.length === total) {
+            return
+        }
+
+        setLoading(true)
+
+        // buscando casos na api, passando a pagina atual como parametro
+        const response = await api.get('incidents', { params: { page } })
+
+        // operador spred para carregar todos os casos sem sobrescrever
+        setIncidents([...incidents, ...response.data])
         setTotal(response.headers['x-total-count'])
+
+        setPage(page + 1)
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -50,6 +69,8 @@ function Incidents() {
                 style={styles.incidentList}
                 keyExtractor={incident => String(incident.id)}
                 showsVerticalScrollIndicator={false}
+                onEndReached={loadIncidents}
+                onEndReachedThreshold={0.2}
                 renderItem={({ item: incident }) => (
 
                     <View style={styles.incident}>
