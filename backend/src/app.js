@@ -34,7 +34,5 @@ app.use(routes)
 // tratamento erros de validação
 app.use(errors())
 
-const PORT = 3333
-app.listen(PORT, () => {
-    console.log('Executando na porta ' + PORT)
-})
+// app.listen movido para server.js - motivo testes
+module.exports = app;

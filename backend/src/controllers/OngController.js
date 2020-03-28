@@ -1,5 +1,5 @@
 const connection = require('../database/connection')
-const crypto = require('crypto')
+const generateUniqueId = require('../utils/generateUniqueId')
 
 module.exports = {
 
@@ -16,7 +16,7 @@ module.exports = {
         const { name, email, whatsapp, city, uf } = req.body
 
         // cria um id randomico
-        const id = crypto.randomBytes(4).toString('HEX')
+        const id = generateUniqueId()
 
         // insere os dados no banco
         await connection('ongs').insert({
