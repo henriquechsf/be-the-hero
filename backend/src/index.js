@@ -21,6 +21,7 @@
 
 const express = require('express')
 const cors = require('cors')
+const { errors } = require('celebrate')
 const routes = require('./routes')
 
 const app = express()
@@ -30,6 +31,8 @@ app.use(cors())
 // receber body da requisição em formato json
 app.use(express.json())
 app.use(routes)
+// tratamento erros de validação
+app.use(errors())
 
 const PORT = 3333
 app.listen(PORT, () => {
