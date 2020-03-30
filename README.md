@@ -1,5 +1,6 @@
 <h4 align="center">
-<img src="./mobile/src/assets/logo3x.png" width="250px" /><br>
+## BE THE HERO
+<br>
  <b>Seja um verdadeiro Heroi!</b> 🦸‍♂️
 </h4>
 <p align="center">
